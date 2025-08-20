@@ -1,0 +1,2016 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Google Gemini Student Ambassador Application</title>
+    <style>
+      :root{
+        --bg-grad-1:#6a5bff;
+        --bg-grad-2:#5ad0ff;
+        --accent:#667eea;
+        --accent-2:#00b7ff;
+        --muted:#5f6368;
+        --card-bg: #ffffff;
+        --input-bg: #fafafa;
+        --success:#137333;
+        --danger:#ea4335;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+        min-height: 100vh;
+        padding: 24px;
+        transition: background 0.6s ease;
+      }
+
+      .form-container {
+        max-width: 980px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        border-radius: 18px;
+        box-shadow: 0 30px 50px rgba(42, 35, 80, 0.18);
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.06);
+        transform: translateY(10px);
+        animation: floatIn 0.6s ease;
+      }
+
+      @keyframes floatIn {
+        from{ opacity: 0; transform: translateY(30px) scale(.99) }
+        to{ opacity: 1; transform: translateY(0) scale(1) }
+      }
+
+      .form-header {
+    /* background: linear-gradient(180deg, #460aecf2 0%, rgb(255 255 255 / 90%) 90%); */
+    color: white;
+    padding: 20px 14px;
+    text-align: center;
+    position: relative;
+    /* box-shadow: 0 6px 30px rgb(255 255 255 / 0%) inset; */
+}
+
+      /* .form-header::before {
+        content: "🚀";
+        position: absolute;
+        top: 16px;
+        right: 28px;
+        font-size: 2rem;
+        opacity: 0.9;
+      } */
+
+      .form-header img{
+        width:100%; height:100%;     max-height: 240px;
+    object-fit: contain;
+    /* border-radius: 8px;
+    box-shadow: 0 8px 30px 5px rgb(68 2 252); */
+      }
+
+      .form-content {
+        padding: 48px;
+      }
+
+      .progress-container {
+        margin-bottom: 36px;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 10px;
+        background: linear-gradient(90deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: 0 6px 18px rgba(96, 89, 163, 0.06) inset;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        border-radius: 999px;
+        transition: width 0.45s cubic-bezier(.2,.9,.2,1);
+        box-shadow: 0 6px 18px rgba(124,77,255,0.16);
+      }
+
+      .progress-text {
+        text-align: center;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .form-section {
+        display: none;
+        animation: fadeIn 0.55s ease-in;
+      }
+
+      .form-section.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .section-title {
+        font-size: 2.4rem;
+        color: var(--accent);
+            margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .section-description {
+        color: var(--muted);
+    margin-bottom: 35px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+      }
+
+      .form-group {
+        margin-bottom: 22px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: #23212b;
+        font-size: 0.98rem;
+      }
+
+      .required {
+        color: var(--danger);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+width: 100%;
+    background: var(--input-bg);
+    box-shadow: 0 6px 18px rgba(47, 44, 88, 0.03);
+    padding: 16px 20px;
+    border: 2px solid #dadce0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent);
+        background: #fff;
+        box-shadow: 0 8px 30px rgba(124,77,255,0.08);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .search-input {
+        position: relative;
+      }
+
+      .search-input::after {
+        content: "🔍";
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        opacity: 0.5;
+      }
+
+      .dropdown-search {
+        position: relative;
+      }
+
+      .college-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid rgba(20,20,50,0.05);
+        border-top: none;
+        border-radius: 0 0 12px 12px;
+        max-height: 220px;
+        overflow-y: auto;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 10px 30px rgba(47,44,88,0.08);
+      }
+
+      .college-option {
+        padding: 14px 18px;
+        cursor: pointer;
+        border-bottom: 1px solid #f1f3f4;
+        transition: all 0.22s ease;
+        font-weight: 600;
+        background: linear-gradient(135deg, #fff 0%, #fbfbff 100%);
+      }
+
+      .college-option:hover {
+        background: linear-gradient(135deg, rgba(124,77,255,0.95) 0%, rgba(0,183,255,0.95) 100%);
+        color: white;
+        transform: translateX(6px);
+        box-shadow: 0 8px 30px rgba(124,77,255,0.12);
+      }
+
+      .college-option.highlighted {
+        background: #eef4ff;
+      }
+
+      /* Checkbox and Radio Groups */
+      .checkbox-grid,
+      .radio-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .checkbox-item,
+      .radio-item {
+          padding: 18px 20px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+}
+
+      .checkbox-item:hover,
+      .radio-item:hover {
+background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-color: #667eea;
+      }
+
+      .checkbox-item input,
+      .radio-item input {
+        width: auto;
+        margin-right: 12px;
+        transform: scale(1.2);
+        accent-color: var(--accent);
+      }
+
+      .checkbox-item label,
+      .radio-item label {
+        margin: 0;
+        cursor: pointer;
+        font-weight: 600;
+        color: #202124;
+      }
+
+      /* Rating Scale */
+      .rating-scale {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 18px 0;
+        padding: 16px;
+        background: #fbfdff;
+        border-radius: 12px;
+      }
+
+      .rating-option {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .rating-option:hover {
+        background: #eef4ff;
+      }
+
+      .rating-option input[type="radio"] {
+        margin-bottom: 8px;
+        transform: scale(1.2);
+        accent-color: var(--accent);
+      }
+
+      .rating-option label {
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      /* File Upload */
+      .file-upload {
+        position: relative;
+        margin: 18px 0;
+      }
+
+      .file-upload input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .file-upload-label {
+        display: block;
+        padding: 18px;
+        background: #fbfbff;
+        border: 2px dashed rgba(20,20,50,0.06);
+        border-radius: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.22s ease;
+        font-weight:600;
+      }
+
+      .file-upload-label:hover {
+        background: #eef6ff;
+        border-color: var(--accent);
+      }
+
+      .file-upload-label.has-file {
+        background: #eefef3;
+        border-color: #34a853;
+        color: #137333;
+      }
+
+      .file-info {
+        margin-top: 10px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #f1f3f4;
+        gap:12px;
+      }
+
+      .btn {
+        padding: 12px 26px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.28s ease;
+        text-transform: none;
+        letter-spacing: 0.4px;
+        box-shadow: 0 8px 26px rgba(47,44,88,0.06);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+        color: white;
+      }
+
+      .btn-primary:hover:not(:disabled) {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 48px rgba(124,77,255,0.18);
+      }
+
+      .btn-secondary {
+        background: #f8f9fb;
+        color: #5f6368;
+        border: 1px solid rgba(20,20,50,0.04);
+      }
+
+      .btn-secondary:hover:not(:disabled) {
+        background: #eef0f8;
+        transform: translateY(-3px);
+      }
+
+      .btn:disabled {
+        background: #f1f3f4;
+        color: #9aa0a6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      /* Loading States */
+      .loading {
+        display: none;
+        text-align: center;
+        padding: 60px 20px;
+      }
+
+      .spinner {
+        border: 4px solid #f1f3f4;
+        border-top: 4px solid var(--accent);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 30px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .success-message {
+        display: none;
+        text-align: center;
+        padding: 60px 40px;
+        color: var(--success);
+      }
+
+      .success-icon {
+        font-size: 5rem;
+        margin-bottom: 25px;
+      }
+
+      /* Indian States List */
+      .states-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 2px solid #dadce0;
+        border-radius: 12px;
+        padding: 15px;
+        background: #fafafa;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .form-header h1 {
+          font-size: 1.8rem;
+        }
+
+        .form-content {
+          padding: 28px 20px;
+        }
+
+        .checkbox-grid,
+        .radio-group {
+          grid-template-columns: 1fr;
+        }
+
+        .rating-scale {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .button-group {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        html {
+          font-size: 15px;
+        }
+
+        .form-header {
+          padding: 10px;
+        }
+
+        .form-header::before {
+          opacity: 0;
+        }
+      }
+
+      /* Error States */
+      .error {
+        border-color: var(--danger) !important;
+        background: #fff6f6 !important;
+      }
+
+      .error-message {
+        color: var(--danger);
+        font-size: 0.9rem;
+        margin-top: 6px;
+        display: none;
+      }
+
+      /* Terms text styling */
+      /* .terms-box {
+        padding: 16px;
+        background: #fbfbff;
+        border-radius: 12px;
+        border: 1px solid rgba(20,20,50,0.04);
+        max-height: 260px;
+        overflow-y: auto;
+        line-height: 1.6;
+        color: #333;
+        font-size: 0.95rem;
+      } */
+.terms-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #e8eaed;
+        }
+
+        .terms-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .terms-content {
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .terms-content h4 {
+            color: #202124;
+            margin: 15px 0 8px 0;
+            font-weight: 600;
+        }
+
+        .terms-content p {
+            margin-bottom: 12px;
+        }
+
+        .agreement-checkbox {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #dadce0;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .agreement-checkbox:hover {
+            border-color: #667eea;
+        }
+
+        .agreement-checkbox input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .agreement-checkbox .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dadce0;
+            border-radius: 4px;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .agreement-checkbox input:checked + .custom-checkbox {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .agreement-checkbox input:checked + .custom-checkbox::after {
+            content: '✓';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .agreement-checkbox label {
+            cursor: pointer;
+            font-weight: 500;
+            color: #202124;
+            flex: 1;
+            pointer-events: none;
+        }
+
+      /* .agree-row{
+        display:flex; gap:12px; align-items:center; margin-top:14px;
+      } */
+
+    </style>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <div class="form-header">
+        <img
+          src="./Google Student Ambassador Program.png"
+          alt="Google Gemini Logo"
+          style="width: 100%; height: 100%; margin-top: 10px"
+        />
+      </div>
+
+      <div class="form-content">
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-text" id="progressText">
+            Step 1 of 4: Personal Information
+          </div>
+        </div>
+
+        <form id="ambassadorForm">
+          <!-- Page 1: Personal Information -->
+          <div class="form-section active" id="section1">
+            <h2 class="section-title">Tell us about yourself</h2>
+            <p class="section-description">
+              Before we get started, we'd love to learn a bit more about you.
+              Just a few quick questions to help us with the shortlisting
+              process.
+            </p>
+
+            <div class="form-group">
+              <label for="fullName"
+                >Enter your Full Name <span class="required">*</span></label
+              >
+              <input type="text" id="fullName" name="fullName" required />
+              <div class="error-message" id="fullNameError">
+                Please enter your full name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="studentId"
+                >Submit your Student ID Proof
+                <span class="required">*</span></label
+              >
+              <div class="file-upload">
+                <input
+                  type="file"
+                  id="studentId"
+                  name="studentId"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                  required
+                />
+                <label
+                  for="studentId"
+                  class="file-upload-label"
+                  id="studentIdLabel"
+                >
+                  📸 Click to upload Student ID photo<br />
+                  <small>Supported: JPG, PNG, PDF (Max 10MB)</small>
+                </label>
+              </div>
+              <div class="error-message" id="studentIdError">
+                Please upload your Student ID proof
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email"
+                >Enter your email address <span class="required">*</span></label
+              >
+              <input type="email" id="email" name="email" required />
+              <div class="error-message" id="emailError">
+                Please enter a valid email address
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="collegeName"
+                >Enter your college name [Complete Name]
+                <span class="required">*</span></label
+              >
+              <div class="dropdown-search">
+                <input
+                  type="text"
+                  id="collegeName"
+                  name="collegeName"
+                  placeholder="Search and select your college..."
+                  required
+                  autocomplete="off"
+                />
+                <div class="college-options" id="collegeOptions"></div>
+              </div>
+              <div class="error-message" id="collegeNameError">
+                Please select your college from the list
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="universityName"
+                >Enter the affiliated university name [Complete Name]
+                <span class="required">*</span></label
+              >
+              <input
+                type="text"
+                id="universityName"
+                name="universityName"
+                required
+              />
+              <div class="error-message" id="universityNameError">
+                Please enter your university name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="city"
+                >Enter your city <span class="required">*</span></label
+              >
+              <input type="text" id="city" name="city" required />
+              <div class="error-message" id="cityError">
+                Please enter your city
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="state"
+                >Enter your college state from India
+                <span class="required">*</span></label
+              >
+              <select id="state" name="state" required>
+                <option value="">Select your state...</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Puducherry">Puducherry</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">
+                  Dadra and Nagar Haveli and Daman and Diu
+                </option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Andaman and Nicobar Islands">
+                  Andaman and Nicobar Islands
+                </option>
+              </select>
+              <div class="error-message" id="stateError">
+                Please select your state
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 2: GQ (Gemini Quotient) Check -->
+          <div class="form-section" id="section2">
+            <h2 class="section-title">GQ (Gemini Quotient) Check!</h2>
+            <p class="section-description">
+              How well do you know AI + Gemini? No pressure, just show us what
+              you've got!
+            </p>
+
+            <div class="form-group">
+              <label
+                >Which AI tools are your go-to buddies?
+                <span class="required">*</span></label
+              >
+              <p style="color: #5f6368; margin-bottom: 15px">
+                Tick the ones you actually use and feel confident with, no
+                pressure to flex if you don't!
+              </p>
+              <div class="checkbox-grid">
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="gemini"
+                    name="aiTools"
+                    value="Google Gemini"
+                  />
+                  <label for="gemini">Google Gemini</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="chatgpt"
+                    name="aiTools"
+                    value="ChatGPT"
+                  />
+                  <label for="chatgpt">ChatGPT</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="metaai"
+                    name="aiTools"
+                    value="Meta AI"
+                  />
+                  <label for="metaai">Meta AI</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="perplexity"
+                    name="aiTools"
+                    value="Perplexity"
+                  />
+                  <label for="perplexity">Perplexity</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="copilot"
+                    name="aiTools"
+                    value="Microsoft Copilot"
+                  />
+                  <label for="copilot">Microsoft Copilot</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="deepseek"
+                    name="aiTools"
+                    value="DeepSeek"
+                  />
+                  <label for="deepseek">DeepSeek</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="grok"
+                    name="aiTools"
+                    value="Grok"
+                  />
+                  <label for="grok">Grok</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="noneTools"
+                    name="aiTools"
+                    value="None of the above"
+                  />
+                  <label for="noneTools">None of the above</label>
+                </div>
+              </div>
+              <div class="error-message" id="aiToolsError">
+                Please select at least one AI tool
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label
+                >How familiar are you with Google Gemini?
+                <span class="required">*</span></label
+              >
+              <div class="rating-scale">
+                <div class="rating-option">
+                  <input
+                    type="radio"
+                    id="familiarity1"
+                    name="geminiFamiliarity"
+                    value="1"
+                    required
+                  />
+                  <label for="familiarity1">Gemini who?</label>
+                </div>
+                <div class="rating-option">
+                  <input
+                    type="radio"
+                    id="familiarity2"
+                    name="geminiFamiliarity"
+                    value="2"
+                  />
+                  <label for="familiarity2">2</label>
+                </div>
+                <div class="rating-option">
+                  <input
+                    type="radio"
+                    id="familiarity3"
+                    name="geminiFamiliarity"
+                    value="3"
+                  />
+                  <label for="familiarity3">3</label>
+                </div>
+                <div class="rating-option">
+                  <input
+                    type="radio"
+                    id="familiarity4"
+                    name="geminiFamiliarity"
+                    value="4"
+                  />
+                  <label for="familiarity4">4</label>
+                </div>
+                <div class="rating-option">
+                  <input
+                    type="radio"
+                    id="familiarity5"
+                    name="geminiFamiliarity"
+                    value="5"
+                  />
+                  <label for="familiarity5">I use it everyday!</label>
+                </div>
+              </div>
+              <div class="error-message" id="familiarityError">
+                Please rate your familiarity
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label
+                >Which Google Gemini features have you used before?
+                <span class="required">*</span></label
+              >
+              <div class="checkbox-grid">
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="imagen"
+                    name="geminiFeatures"
+                    value="Imagen [image generation]"
+                  />
+                  <label for="imagen">Imagen [image generation]</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="veo"
+                    name="geminiFeatures"
+                    value="Veo [video generation]"
+                  />
+                  <label for="veo">Veo [video generation]</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="live"
+                    name="geminiFeatures"
+                    value="Gemini Live"
+                  />
+                  <label for="live">Gemini Live</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="canvas"
+                    name="geminiFeatures"
+                    value="Canvas"
+                  />
+                  <label for="canvas">Canvas</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="research"
+                    name="geminiFeatures"
+                    value="Deep Research"
+                  />
+                  <label for="research">Deep Research</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="audio"
+                    name="geminiFeatures"
+                    value="Audio Overview"
+                  />
+                  <label for="audio">Audio Overview</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="gems"
+                    name="geminiFeatures"
+                    value="Gems"
+                  />
+                  <label for="gems">Gems</label>
+                </div>
+                <div class="checkbox-item">
+                  <input
+                    type="checkbox"
+                    id="noneFeatures"
+                    name="geminiFeatures"
+                    value="None of the above"
+                  />
+                  <label for="noneFeatures">None of the above</label>
+                </div>
+              </div>
+              <div class="error-message" id="featuresError">
+                Please select at least one feature
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label
+                >Google Gemini is only available on Android devices. True or
+                false? <span class="required">*</span></label
+              >
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="trueFalseTrue"
+                    name="geminiAvailability"
+                    value="True"
+                    required
+                  />
+                  <label for="trueFalseTrue">True</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="trueFalseFalse"
+                    name="geminiAvailability"
+                    value="False"
+                  />
+                  <label for="trueFalseFalse">False</label>
+                </div>
+              </div>
+              <div class="error-message" id="availabilityError">
+                Please select True or False
+              </div>
+            </div>
+          </div>
+
+          <!-- Page 3: Leadership DNA -->
+          <div class="form-section" id="section3">
+            <h2 class="section-title">Your Leadership DNA</h2>
+            <p class="section-description">
+              We want to know if you've taken charge before and what excites you
+              about the Student Ambassador Program? Your motivation, interest in
+              AI, and how you plan to make a difference on your campus with
+              Google Gemini.
+            </p>
+
+            <div class="form-group">
+              <label for="ambassadorExperience"
+                >Have you ever been part of an ambassador program before? If
+                yes, which one? <span class="required">*</span></label
+              >
+              <textarea
+                id="ambassadorExperience"
+                name="ambassadorExperience"
+                placeholder="Tell us about your previous ambassador experience, or write 'No' if this is your first time..."
+                required
+              ></textarea>
+              <div class="error-message" id="experienceError">
+                Please share your ambassador experience
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label
+                >Are you available to be a Student Ambassador till December
+                2025? <span class="required">*</span><br /><small
+                  style="color: #5f6368"
+                  >[approx 5-6 hours per week commitment]</small
+                ></label
+              >
+              <div class="radio-group">
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="availableYes"
+                    name="availability"
+                    value="Yes"
+                    required
+                  />
+                  <label for="availableYes">Yes</label>
+                </div>
+                <div class="radio-item">
+                  <input
+                    type="radio"
+                    id="availableNo"
+                    name="availability"
+                    value="Time commitment will be hard for me"
+                  />
+                  <label for="availableNo"
+                    >Time commitment will be hard for me</label
+                  >
+                </div>
+              </div>
+              <div class="error-message" id="availabilityError">
+                Please select your availability
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="creativePitch"
+                >Why do you deserve to be a Google Student Ambassador?
+                <span class="required">*</span></label
+              >
+              <p style="color: #5f6368; margin-bottom: 15px">
+                Show us your creativity! This is your chance to pitch yourself
+                in a fun and unique way. It could be a short song, a quick
+                elevator pitch, a comic strip, or anything else that reflects
+                your innovative spirit. Need help? Use Google Gemini to
+                brainstorm ideas or bring your final vision to life!
+              </p>
+              <textarea
+                id="creativePitch"
+                name="creativePitch"
+                placeholder="Your creative pitch here... Be innovative, be you!"
+                required
+              ></textarea>
+              <div class="error-message" id="pitchError">
+                Please write your creative pitch
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="creativePlateform"
+                >Upload your creative pitch (Optional)</label
+              >
+              <p style="color: #5f6368; margin-bottom: 15px">
+                Upload up to 5 supported files. Max 10 MB per file.
+              </p>
+              <div class="file-upload">
+                <input
+                  type="file"
+                  id="creativePlateform"
+                  name="creativePlateform"
+                  multiple
+                  accept=".jpg,.jpeg,.png,.pdf,.mp4,.mp3,.mov,.avi,.doc,.docx"
+                />
+                <label
+                  for="creativePlateform"
+                  class="file-upload-label"
+                  id="creativeFiles"
+                >
+                  📁 Click to upload creative files<br />
+                  <small
+                    >Supported: Images, Videos, Audio, Documents (Max 10MB
+                    each)</small
+                  >
+                </label>
+              </div>
+              <div class="file-info" id="fileInfo"></div>
+            </div>
+          </div>
+
+          <!-- Page 4: Terms & Conditions + Referral ID -->
+          <!-- <div class="form-section" id="section4">
+            <h2 class="section-title">Terms & Conditions</h2>
+            <p class="section-description">
+              Please review the privacy policy and consent before submitting.
+            </p>
+
+            <div class="form-group">
+              <div class="terms-section terms-box" id="termsText">
+                <strong>By submitting this form, you agree to the following terms regarding the collection and handling of your personal information:</strong>
+                <ul>
+                  <li><strong>Information Collected:</strong> Your name, email address, and other details will be collected and stored securely for the purpose of verifying and processing your participation in the program.</li>
+                  <li><strong>Use of Information:</strong> The information provided will only be used by the program organizers (Ping Digital Broadcast Private Limited) to manage eligibility, and maintain program records. It will not be used for any other purposes.</li>
+                  <li><strong>Data Sharing:</strong> The submitted information may be shared with authorized members of the Google Student Ambassador Program team for administrative purposes. It will not be shared with third parties outside the scope of this program.</li>
+                  <li><strong>Data Security:</strong> All data submitted will be stored in a secure environment. Appropriate measures will be taken to protect your data from unauthorized access.</li>
+                </ul>
+                <p>By submitting this form, you consent to the collection and processing of your personal data as outlined above.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="referralId"
+                >Referral ID (Registered Email ID of Ambassador)</label
+              >
+              <input
+                type="email"
+                id="referralId"
+                name="referralId"
+                placeholder="Enter the registered email ID of the ambassador who referred you (must match their program registration)."
+              />
+              <div class="error-message" id="referralIdError">
+                Please enter a valid email for referral (if provided)
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="agree-row">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" />
+                <label for="agreeTerms" style="font-weight:600">
+                  I agree to the terms and privacy policy above <span class="required">*</span>
+                </label>
+              </div>
+              <div class="error-message" id="agreeTermsError">
+                You must agree to the terms before submitting
+              </div>
+            </div>
+          </div> -->
+
+
+    <!-- Page 4: Terms & Referral -->
+                <div class="form-section" id="section4">
+                    <h2 class="section-title">Terms & Referral</h2>
+                    <p class="section-description">Review our terms and conditions, and add a referral if you have one.</p>
+
+                    <div class="form-group">
+                        <label for="referralId">Referral ID (Registered Email ID of Ambassador)</label>
+                        <p style="color: #5f6368; margin-bottom: 15px;">Enter the registered email ID of the ambassador who referred you (must match their program registration).</p>
+                        <input type="email" id="referralId" name="referralId" placeholder="ambassador@email.com">
+                        <div class="error-message" id="referralIdError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="terms-section">
+                        <h3 class="terms-title">Terms and Conditions</h3>
+                        <div class="terms-content">
+                            <p><strong>By submitting this form, you agree to the following terms regarding the collection and handling of your personal information:</strong></p>
+                            
+                            <h4>Information Collected:</h4>
+                            <p>Your name, email address, and other details will be collected and stored securely for the purpose of verifying and processing your participation in the program.</p>
+                            
+                            <h4>Use of Information:</h4>
+                            <p>The information provided will only be used by the program organizers (Ping Digital Broadcast Private Limited) to manage eligibility, and maintain program records. It will not be used for any other purposes.</p>
+                            
+                            <h4>Data Sharing:</h4>
+                            <p>The submitted information may be shared with authorized members of the Google Student Ambassador Program team for administrative purposes. It will not be shared with third parties outside the scope of this program.</p>
+                            
+                            <h4>Data Security:</h4>
+                            <p>All data submitted will be stored in a secure environment. Appropriate measures will be taken to protect your data from unauthorized access.</p>
+                            
+                            <p><strong>By submitting this form, you consent to the collection and processing of your personal data as outlined above.</strong></p>
+                        </div>
+                        
+                        <div class="agreement-checkbox">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                            <div class="custom-checkbox"></div>
+                            <label for="agreeTerms">I agree to the terms and conditions stated above and consent to the collection and processing of my personal data as outlined. <span class="required">*</span></label>
+                        </div>
+                        <div class="error-message" id="agreeTermsError">You must agree to the terms and conditions to proceed</div>
+                    </div>
+                </div>
+
+
+
+          <!-- Navigation Buttons -->
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="prevBtn"
+              onclick="changeSection(-1)"
+              disabled
+            >
+              ← Previous
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="nextBtn"
+              onclick="changeSection(1)"
+            >
+              Next →
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="submitBtn"
+              style="display: none"
+            >
+              🚀 Submit Application
+            </button>
+          </div>
+        </form>
+
+        <!-- Loading State -->
+        <div class="loading" id="loadingState">
+          <div class="spinner"></div>
+          <p>Submitting your application</p>
+        </div>
+
+        <!-- Success State -->
+        <div class="success-message" id="successState">
+          <div class="success-icon">🎉</div>
+          <h2>Application Submitted Successfully!</h2>
+          <p>
+            Thank you for applying to be a Google Gemini Student Ambassador.
+            We'll review your application and get back to you soon!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Configuration - UPDATE THESE VALUES
+      const CONFIG = {
+        SCRIPT_URL:
+          "https://script.google.com/macros/s/AKfycbzc7mUR_Xw7RROYjX2k3cjdoCRavXyJWVP5y9lrn2QXNS2tbQYuI3ZSEP5gFBVqta9phw/exec", // Replace with your deployed script URL
+        COLLEGES_SHEET_ID: "150Bw8lzOWLomeQfTpn2UV-yJo7Q8SRmfLQCgXpXOkPU",
+      };
+
+      let currentSection = 1;
+      const totalSections = 4; // updated to include Terms & Conditions section
+      let collegesData = [];
+      let filteredColleges = [];
+
+      // Initialize the form
+      document.addEventListener("DOMContentLoaded", function () {
+        loadColleges();
+        updateProgress();
+        setupFileUploads();
+        setupCollegeSearch();
+      });
+
+      // Load colleges from Google Sheets
+      async function loadColleges() {
+        try {
+          console.log("This Script is getting called");
+          const response = await fetch(
+            `${CONFIG.SCRIPT_URL}?action=getColleges`
+          );
+          console.log(response);
+          const data = await response.json();
+          console.log(data);
+          if (data.success) {
+            collegesData = data.colleges;
+          } else {
+            console.error("Failed to load colleges:", data.error);
+            loadFallbackColleges();
+          }
+        } catch (error) {
+          console.error("Error loading colleges:", error);
+          loadFallbackColleges();
+        }
+      }
+
+      // Fallback colleges list (from your CSV)
+      function loadFallbackColleges() {
+        collegesData = [
+          "A N College Patna",
+          "A. D. Patel Institute of Technology",
+          "A.G.Patil institute of technology, Solapur",
+          "Abacus Institute of Engineering and Management",
+          "IIT Bombay",
+          "IIT Patna",
+          "NIT Patna",
+          "Jadavpur University",
+          "University of Mumbai",
+          "Delhi University",
+          "Jawaharlal Nehru University",
+          "Anna University",
+          // Add more colleges as needed
+        ];
+      }
+
+      // Setup college search functionality
+      function setupCollegeSearch() {
+        const collegeInput = document.getElementById("collegeName");
+        const optionsContainer = document.getElementById("collegeOptions");
+        let selectedIndex = -1;
+
+        collegeInput.addEventListener("input", function () {
+          const query = this.value.toLowerCase();
+
+          if (query.length === 0) {
+            optionsContainer.style.display = "none";
+            return;
+          }
+
+          filteredColleges = collegesData
+            .filter((college) => college.toLowerCase().includes(query))
+            .slice(0, 10); // Limit to 10 results
+
+          displayCollegeOptions(filteredColleges);
+          selectedIndex = -1;
+        });
+
+        collegeInput.addEventListener("keydown", function (e) {
+          const options = optionsContainer.querySelectorAll(".college-option");
+
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            selectedIndex = Math.min(selectedIndex + 1, options.length - 1);
+            updateSelection(options);
+          } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            selectedIndex = Math.max(selectedIndex - 1, -1);
+            updateSelection(options);
+          } else if (e.key === "Enter" && selectedIndex >= 0) {
+            e.preventDefault();
+            selectCollege(filteredColleges[selectedIndex]);
+          } else if (e.key === "Escape") {
+            optionsContainer.style.display = "none";
+            selectedIndex = -1;
+          }
+        });
+
+        // Hide options when clicking outside
+        document.addEventListener("click", function (e) {
+          if (
+            !collegeInput.contains(e.target) &&
+            !optionsContainer.contains(e.target)
+          ) {
+            optionsContainer.style.display = "none";
+          }
+        });
+      }
+
+      function displayCollegeOptions(colleges) {
+        const optionsContainer = document.getElementById("collegeOptions");
+        optionsContainer.innerHTML = "";
+
+        if (colleges.length === 0) {
+          optionsContainer.style.display = "none";
+          return;
+        }
+
+        colleges.forEach((college, index) => {
+          const option = document.createElement("div");
+          option.className = "college-option";
+          option.textContent = college;
+          option.addEventListener("click", () => selectCollege(college));
+          optionsContainer.appendChild(option);
+        });
+
+        optionsContainer.style.display = "block";
+      }
+
+      function updateSelection(options) {
+        options.forEach((option, index) => {
+          option.classList.toggle("highlighted", index === selectedIndex);
+        });
+      }
+
+      function selectCollege(college) {
+        document.getElementById("collegeName").value = college;
+        document.getElementById("collegeOptions").style.display = "none";
+      }
+
+      // Setup file upload handlers
+      function setupFileUploads() {
+        const studentIdFile = document.getElementById("studentId");
+        const creativePlateformFile =
+          document.getElementById("creativePlateform");
+
+        studentIdFile.addEventListener("change", function () {
+          updateFileLabel(
+            this,
+            document.getElementById("studentIdLabel"),
+            "Student ID"
+          );
+        });
+
+        creativePlateformFile.addEventListener("change", function () {
+          updateCreativeFilesLabel(this);
+        });
+      }
+
+      function updateFileLabel(input, label, fileType) {
+        if (input.files && input.files[0]) {
+          const fileName = input.files[0].name;
+          label.innerHTML = `✅ ${fileType} uploaded: ${fileName}`;
+          label.classList.add("has-file");
+        } else {
+          label.innerHTML = `📸 Click to upload ${fileType}`;
+          label.classList.remove("has-file");
+        }
+      }
+
+      function updateCreativeFilesLabel(input) {
+        const label = document.getElementById("creativeFiles");
+        const fileInfo = document.getElementById("fileInfo");
+
+        if (input.files && input.files.length > 0) {
+          const fileCount = input.files.length;
+          label.innerHTML = `✅ ${fileCount} file(s) selected`;
+          label.classList.add("has-file");
+
+          let fileListHTML = "<strong>Selected files:</strong><br>";
+          for (let i = 0; i < Math.min(input.files.length, 5); i++) {
+            fileListHTML += `• ${input.files[i].name}<br>`;
+          }
+          if (input.files.length > 5) {
+            fileListHTML += `• ... and ${input.files.length - 5} more files`;
+          }
+          fileInfo.innerHTML = fileListHTML;
+        } else {
+          label.innerHTML = "📁 Click to upload creative files";
+          label.classList.remove("has-file");
+          fileInfo.innerHTML = "";
+        }
+      }
+
+      // Section navigation
+      function changeSection(direction) {
+        if (direction === 1 && !validateCurrentSection()) {
+          return;
+        }
+
+        const currentSectionEl = document.getElementById(
+          `section${currentSection}`
+        );
+        currentSectionEl.classList.remove("active");
+
+        currentSection += direction;
+
+        const nextSectionEl = document.getElementById(
+          `section${currentSection}`
+        );
+        nextSectionEl.classList.add("active");
+
+        updateButtons();
+        updateProgress();
+        clearErrors();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Validation functions
+      function validateCurrentSection() {
+        clearErrors();
+        let isValid = true;
+
+        if (currentSection === 1) {
+          isValid = validatePersonalInfo() && isValid;
+        } else if (currentSection === 2) {
+          isValid = validateGeminiQuotient() && isValid;
+        } else if (currentSection === 3) {
+          isValid = validateLeadershipDNA() && isValid;
+        } else if (currentSection === 4) {
+          isValid = validateTermsAndReferral() && isValid;
+        }
+
+        return isValid;
+      }
+
+      function validatePersonalInfo() {
+        let isValid = true;
+
+        // Full Name
+        const fullName = document.getElementById("fullName");
+        if (!fullName.value.trim()) {
+          showError("fullName", "Please enter your full name");
+          isValid = false;
+        }
+
+        // Student ID
+        const studentId = document.getElementById("studentId");
+        if (!studentId.files || studentId.files.length === 0) {
+          showError("studentId", "Please upload your Student ID proof");
+          isValid = false;
+        }
+
+        // Email
+        const email = document.getElementById("email");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value.trim() || !emailRegex.test(email.value)) {
+          showError("email", "Please enter a valid email address");
+          isValid = false;
+        }
+
+        // College Name
+        const collegeName = document.getElementById("collegeName");
+        if (!collegeName.value.trim()) {
+          showError("collegeName", "Please select your college");
+          isValid = false;
+        }
+
+        // University Name
+        const universityName = document.getElementById("universityName");
+        if (!universityName.value.trim()) {
+          showError("universityName", "Please enter your university name");
+          isValid = false;
+        }
+
+        // City
+        const city = document.getElementById("city");
+        if (!city.value.trim()) {
+          showError("city", "Please enter your city");
+          isValid = false;
+        }
+
+        // State
+        const state = document.getElementById("state");
+        if (!state.value) {
+          showError("state", "Please select your state");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function validateGeminiQuotient() {
+        let isValid = true;
+
+        // AI Tools
+        const aiTools = document.querySelectorAll(
+          'input[name="aiTools"]:checked'
+        );
+        if (aiTools.length === 0) {
+          document.getElementById("aiToolsError").style.display = "block";
+          isValid = false;
+        }
+
+        // Gemini Familiarity
+        const familiarity = document.querySelector(
+          'input[name="geminiFamiliarity"]:checked'
+        );
+        if (!familiarity) {
+          document.getElementById("familiarityError").style.display = "block";
+          isValid = false;
+        }
+
+        // Gemini Features
+        const features = document.querySelectorAll(
+          'input[name="geminiFeatures"]:checked'
+        );
+        if (features.length === 0) {
+          document.getElementById("featuresError").style.display = "block";
+          isValid = false;
+        }
+
+        // Gemini Availability
+        const availability = document.querySelector(
+          'input[name="geminiAvailability"]:checked'
+        );
+        if (!availability) {
+          document.getElementById("availabilityError").style.display = "block";
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function validateLeadershipDNA() {
+        let isValid = true;
+
+        // Ambassador Experience
+        const experience = document.getElementById("ambassadorExperience");
+        if (!experience.value.trim()) {
+          showError("experience", "Please share your ambassador experience");
+          isValid = false;
+        }
+
+        // Availability
+        const availability = document.querySelector(
+          'input[name="availability"]:checked'
+        );
+        if (!availability) {
+          showError("availability", "Please select your availability");
+          isValid = false;
+        }
+
+        // Creative Pitch
+        const pitch = document.getElementById("creativePitch");
+        if (!pitch.value.trim()) {
+          showError("pitch", "Please write your creative pitch");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function validateTermsAndReferral() {
+        let isValid = true;
+        const agree = document.getElementById("agreeTerms");
+        if (!agree.checked) {
+          document.getElementById("agreeTermsError").style.display = "block";
+          isValid = false;
+        }
+
+        const referral = document.getElementById("referralId");
+        const val = referral.value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (val && !emailRegex.test(val)) {
+          document.getElementById("referralIdError").style.display = "block";
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorElement = document.getElementById(fieldId + "Error");
+
+        if (field) field.classList.add("error");
+        if (errorElement) {
+          errorElement.textContent = message;
+          errorElement.style.display = "block";
+        }
+      }
+
+      function clearErrors() {
+        const errorElements = document.querySelectorAll(".error-message");
+        const fields = document.querySelectorAll(".error");
+
+        errorElements.forEach((el) => (el.style.display = "none"));
+        fields.forEach((field) => field.classList.remove("error"));
+      }
+
+      // Update button states and progress
+      function updateButtons() {
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const submitBtn = document.getElementById("submitBtn");
+
+        prevBtn.disabled = currentSection === 1;
+
+        if (currentSection === totalSections) {
+          nextBtn.style.display = "none";
+          submitBtn.style.display = "inline-block";
+        } else {
+          nextBtn.style.display = "inline-block";
+          submitBtn.style.display = "none";
+        }
+      }
+
+      function updateProgress() {
+        const progress = (currentSection / totalSections) * 100;
+        const progressText = document.getElementById("progressText");
+
+        document.getElementById("progressFill").style.width = progress + "%";
+
+        const stepTexts = [
+          "Step 1 of 4: Personal Information",
+          "Step 2 of 4: GQ (Gemini Quotient) Check",
+          "Step 3 of 4: Leadership DNA",
+          "Step 4 of 4: Terms & Consent",
+        ];
+
+        progressText.textContent = stepTexts[currentSection - 1];
+      }
+
+      document
+        .getElementById("ambassadorForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          if (!validateCurrentSection()) {
+            return;
+          }
+
+          showLoading(true);
+
+          try {
+            // Create FormData object for API submission
+            const apiFormData = new FormData();
+
+            // Add text fields with CORRECT IDs from your HTML
+            apiFormData.append("timestamp", new Date().toISOString());
+            apiFormData.append(
+              "fullName",
+              document.getElementById("fullName").value
+            );
+            apiFormData.append("email", document.getElementById("email").value);
+            apiFormData.append(
+              "collegeName",
+              document.getElementById("collegeName").value
+            );
+            apiFormData.append(
+              "universityName",
+              document.getElementById("universityName").value
+            );
+            apiFormData.append("city", document.getElementById("city").value);
+            apiFormData.append("state", document.getElementById("state").value);
+
+            // Get checked AI tools
+            const aiTools = Array.from(
+              document.querySelectorAll('input[name="aiTools"]:checked')
+            ).map((cb) => cb.value);
+            apiFormData.append("aiTools", aiTools.join(", "));
+
+            // Get selected radio values
+            const geminiFamiliarity = document.querySelector(
+              'input[name="geminiFamiliarity"]:checked'
+            );
+            apiFormData.append(
+              "geminiFamiliarity",
+              geminiFamiliarity ? geminiFamiliarity.value : ""
+            );
+
+            const geminiFeatures = Array.from(
+              document.querySelectorAll('input[name="geminiFeatures"]:checked')
+            ).map((cb) => cb.value);
+            apiFormData.append("geminiFeatures", geminiFeatures.join(", "));
+
+            const geminiAvailability = document.querySelector(
+              'input[name="geminiAvailability"]:checked'
+            );
+            apiFormData.append(
+              "geminiAvailability",
+              geminiAvailability ? geminiAvailability.value : ""
+            );
+
+            apiFormData.append(
+              "ambassadorExperience",
+              document.getElementById("ambassadorExperience").value
+            );
+
+            const availability = document.querySelector(
+              'input[name="availability"]:checked'
+            );
+            apiFormData.append(
+              "availability",
+              availability ? availability.value : ""
+            );
+
+            apiFormData.append(
+              "creativePitch",
+              document.getElementById("creativePitch").value
+            );
+
+            // Referral ID and agreement
+            const referralVal = document.getElementById("referralId").value.trim();
+            apiFormData.append("referralId", referralVal);
+            apiFormData.append("agreedToTerms", document.getElementById("agreeTerms").checked ? "Yes" : "No");
+
+            // Add files with CORRECT field names
+            const studentIdFile = document.getElementById("studentId").files[0];
+            if (studentIdFile) {
+              apiFormData.append("studentIdFile", studentIdFile);
+            }
+
+            const creativeFiles =
+              document.getElementById("creativePlateform").files;
+            if (creativeFiles && creativeFiles.length > 0) {
+              Array.from(creativeFiles).forEach((file, index) => {
+                apiFormData.append(`creativeFiles[${index}]`, file);
+              });
+            }
+
+            console.log("FormData entries:");
+            for (let pair of apiFormData.entries()) {
+              if (pair[1] instanceof File) {
+                console.log(
+                  pair[0],
+                  `File: ${pair[1].name} (${pair[1].size} bytes)`
+                );
+              } else {
+                console.log(pair[0], pair[1]);
+              }
+            }
+
+            // Submit to PHP API
+            const response = await fetch(
+              `https://quiz.thecore.in/api_common/insert_into_college_pref.php?action=submitApplication`,
+              {
+                method: "POST",
+                body: apiFormData,
+              }
+            );
+            console.log(response);
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            if (result.success) {
+              showSuccess();
+              console.log("Application ID:", result.applicationId);
+            } else {
+              throw new Error(result.error || "Submission failed");
+            }
+          } catch (error) {
+            console.error("Submission error:", error);
+            showLoading(false);
+            alert(`Failed to submit application: ${error.message}`);
+          }
+        });
+
+      // Convert file to base64 (kept for compatibility if needed)
+      function convertFileToBase64(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(",")[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // UI State Management
+      function showLoading(show) {
+        const form = document.getElementById("ambassadorForm");
+        const loading = document.getElementById("loadingState");
+
+        if (show) {
+          form.style.display = "none";
+          loading.style.display = "block";
+        } else {
+          form.style.display = "block";
+          loading.style.display = "none";
+        }
+      }
+
+      function showSuccess() {
+        const formContent = document.querySelector(".form-content");
+        const success = document.getElementById("successState");
+
+        formContent.innerHTML = "";
+        formContent.appendChild(success);
+        success.style.display = "block";
+      }
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key === "Enter" &&
+          e.target.tagName !== "TEXTAREA" &&
+          e.target.type !== "submit"
+        ) {
+          e.preventDefault();
+          if (currentSection < totalSections) {
+            changeSection(1);
+          }
+        }
+      });
+
+      // Handle "None of the above" selections
+      document.addEventListener("change", function (e) {
+        if (
+          e.target.name === "aiTools" &&
+          e.target.value === "None of the above"
+        ) {
+          const otherCheckboxes = document.querySelectorAll(
+            'input[name="aiTools"]:not([value="None of the above"])'
+          );
+          if (e.target.checked) {
+            otherCheckboxes.forEach((cb) => (cb.checked = false));
+          }
+        } else if (
+          e.target.name === "aiTools" &&
+          e.target.value !== "None of the above"
+        ) {
+          const noneCheckbox = document.querySelector(
+            'input[name="aiTools"][value="None of the above"]'
+          );
+          if (e.target.checked && noneCheckbox) {
+            noneCheckbox.checked = false;
+          }
+        }
+
+        if (
+          e.target.name === "geminiFeatures" &&
+          e.target.value === "None of the above"
+        ) {
+          const otherCheckboxes = document.querySelectorAll(
+            'input[name="geminiFeatures"]:not([value="None of the above"])'
+          );
+          if (e.target.checked) {
+            otherCheckboxes.forEach((cb) => (cb.checked = false));
+          }
+        } else if (
+          e.target.name === "geminiFeatures" &&
+          e.target.value !== "None of the above"
+        ) {
+          const noneCheckbox = document.querySelector(
+            'input[name="geminiFeatures"][value="None of the above"]'
+          );
+          if (e.target.checked && noneCheckbox) {
+            noneCheckbox.checked = false;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
