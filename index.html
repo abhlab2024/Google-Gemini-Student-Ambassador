@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Google Gemini Student Ambassador Application</title>
+    <title>Google Student Ambassador [Referral Application Form]</title>
     <style>
       :root{
         --bg-grad-1:#6a5bff;
         --bg-grad-2:#5ad0ff;
         --accent:#667eea;
         --accent-2:#00b7ff;
-        --muted:#5f6368;
+        --muted:#000000;
         --card-bg: #ffffff;
         --input-bg: #fafafa;
         --success:#137333;
@@ -25,7 +25,8 @@
 
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%);
+        /* background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%); */
+        background-color: lightgray; /* ya phir #d3d3d3 */
         min-height: 100vh;
         padding: 24px;
         transition: background 0.6s ease;
@@ -57,20 +58,10 @@
     /* box-shadow: 0 6px 30px rgb(255 255 255 / 0%) inset; */
 }
 
-      /* .form-header::before {
-        content: "🚀";
-        position: absolute;
-        top: 16px;
-        right: 28px;
-        font-size: 2rem;
-        opacity: 0.9;
-      } */
 
       .form-header img{
         width:100%; height:100%;     max-height: 240px;
     object-fit: contain;
-    /* border-radius: 8px;
-    box-shadow: 0 8px 30px 5px rgb(68 2 252); */
       }
 
       .form-content {
@@ -485,7 +476,8 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
         .radio-group {
           grid-template-columns: 1fr;
         }
-
+.section-title {
+    font-size: 2.0rem;text-align: center;}
         .rating-scale {
           flex-direction: column;
           gap: 12px;
@@ -527,17 +519,6 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
       }
 
       /* Terms text styling */
-      /* .terms-box {
-        padding: 16px;
-        background: #fbfbff;
-        border-radius: 12px;
-        border: 1px solid rgba(20,20,50,0.04);
-        max-height: 260px;
-        overflow-y: auto;
-        line-height: 1.6;
-        color: #333;
-        font-size: 0.95rem;
-      } */
 .terms-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e8f0fe 100%);
             padding: 30px;
@@ -629,9 +610,6 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
             pointer-events: none;
         }
 
-      /* .agree-row{
-        display:flex; gap:12px; align-items:center; margin-top:14px;
-      } */
 
     </style>
   </head>
@@ -640,7 +618,7 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
     <div class="form-container">
       <div class="form-header">
         <img
-          src="./Google Student Ambassador Program.png"
+          src="./Google Student Ambassador Program.jpeg"
           alt="Google Gemini Logo"
           style="width: 100%; height: 100%; margin-top: 10px"
         />
@@ -661,9 +639,10 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
           <div class="form-section active" id="section1">
             <h2 class="section-title">Tell us about yourself</h2>
             <p class="section-description">
-              Before we get started, we'd love to learn a bit more about you.
-              Just a few quick questions to help us with the shortlisting
-              process.
+             We’re thrilled you’re interested in joining us! Before we get started, we’d love to learn a bit more about you. Just a few quick questions to understand your fit for the Gemini Student Ambassador role and help us with the shortlisting process. 
+<br>
+Please ensure you <b>enter the correct Referral ID (registered email ID of the ambassador)</b>. Only then will the ambassador be eligible to receive <b>referral rewards.
+This form is only for nominated students by Onboarded Ambassadors from the following states: </b>Arunachal Pradesh, Assam, Bihar, Goa, Gujarat, Chhattisgarh, Madhya Pradesh, Maharashtra, West Bengal, Jharkhand, Odisha, Manipur, Meghalaya, Mizoram, Nagaland, Sikkim and Tripura.
             </p>
 
             <div class="form-group">
@@ -713,6 +692,16 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
               </div>
             </div>
 
+<div class="form-group">
+  <label for="phoneNumber"
+    >Enter your phone number <span class="required">*</span></label
+  >
+  <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+91 XXXXXXXXXX" required />
+  <div class="error-message" id="phoneNumberError">
+    Please enter your phone number
+  </div>
+</div>
+
             <div class="form-group">
               <label for="collegeName"
                 >Enter your college name [Complete Name]
@@ -761,57 +750,35 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
             </div>
 
             <div class="form-group">
-              <label for="state"
-                >Enter your college state from India
-                <span class="required">*</span></label
-              >
-              <select id="state" name="state" required>
-                <option value="">Select your state...</option>
-                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                <option value="Assam">Assam</option>
-                <option value="Bihar">Bihar</option>
-                <option value="Chhattisgarh">Chhattisgarh</option>
-                <option value="Goa">Goa</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Haryana">Haryana</option>
-                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                <option value="Jharkhand">Jharkhand</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Kerala">Kerala</option>
-                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Manipur">Manipur</option>
-                <option value="Meghalaya">Meghalaya</option>
-                <option value="Mizoram">Mizoram</option>
-                <option value="Nagaland">Nagaland</option>
-                <option value="Odisha">Odisha</option>
-                <option value="Punjab">Punjab</option>
-                <option value="Rajasthan">Rajasthan</option>
-                <option value="Sikkim">Sikkim</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-                <option value="Telangana">Telangana</option>
-                <option value="Tripura">Tripura</option>
-                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                <option value="Uttarakhand">Uttarakhand</option>
-                <option value="West Bengal">West Bengal</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                <option value="Ladakh">Ladakh</option>
-                <option value="Puducherry">Puducherry</option>
-                <option value="Chandigarh">Chandigarh</option>
-                <option value="Dadra and Nagar Haveli and Daman and Diu">
-                  Dadra and Nagar Haveli and Daman and Diu
-                </option>
-                <option value="Lakshadweep">Lakshadweep</option>
-                <option value="Andaman and Nicobar Islands">
-                  Andaman and Nicobar Islands
-                </option>
-              </select>
-              <div class="error-message" id="stateError">
-                Please select your state
-              </div>
-            </div>
+  <label for="state"
+    >Enter your college state from India
+    <span class="required">*</span></label
+  >
+  <select id="state" name="state" required>
+    <option value="">Select your state...</option>
+    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+    <option value="Assam">Assam</option>
+    <option value="Bihar">Bihar</option>
+    <option value="Chhattisgarh">Chhattisgarh</option>
+    <option value="Goa">Goa</option>
+    <option value="Gujarat">Gujarat</option>
+    <option value="Jharkhand">Jharkhand</option>
+    <option value="Madhya Pradesh">Madhya Pradesh</option>
+    <option value="Maharashtra">Maharashtra</option>
+    <option value="Manipur">Manipur</option>
+    <option value="Meghalaya">Meghalaya</option>
+    <option value="Mizoram">Mizoram</option>
+    <option value="Nagaland">Nagaland</option>
+    <option value="Odisha">Odisha</option>
+    <option value="Sikkim">Sikkim</option>
+    <option value="Tripura">Tripura</option>
+    <option value="West Bengal">West Bengal</option>
+  </select>
+  <div class="error-message" id="stateError">
+    Please select your state
+  </div>
+</div>
+
           </div>
 
           <!-- Page 2: GQ (Gemini Quotient) Check -->
@@ -1085,168 +1052,103 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
           </div>
 
           <!-- Page 3: Leadership DNA -->
-          <div class="form-section" id="section3">
-            <h2 class="section-title">Your Leadership DNA</h2>
-            <p class="section-description">
-              We want to know if you've taken charge before and what excites you
-              about the Student Ambassador Program? Your motivation, interest in
-              AI, and how you plan to make a difference on your campus with
-              Google Gemini.
-            </p>
+        <!-- Page 3: Leadership DNA -->
+<div class="form-section" id="section3">
+  <h2 class="section-title">Your Leadership DNA</h2>
+  <p class="section-description">
+    We want to know if you've taken charge before and what excites you
+    about the Student Ambassador Program? Your motivation, interest in
+    AI, and how you plan to make a difference on your campus with
+    Google Gemini.
+  </p>
 
-            <div class="form-group">
-              <label for="ambassadorExperience"
-                >Have you ever been part of an ambassador program before? If
-                yes, which one? <span class="required">*</span></label
-              >
-              <textarea
-                id="ambassadorExperience"
-                name="ambassadorExperience"
-                placeholder="Tell us about your previous ambassador experience, or write 'No' if this is your first time..."
-                required
-              ></textarea>
-              <div class="error-message" id="experienceError">
-                Please share your ambassador experience
-              </div>
-            </div>
+  <div class="form-group">
+    <label for="ambassadorExperience"
+      >Have you ever been part of an ambassador program before? If
+      yes, which one? <span class="required">*</span></label
+    >
+    <textarea
+      id="ambassadorExperience"
+      name="ambassadorExperience"
+      placeholder="Tell us about your previous ambassador experience, or write 'No' if this is your first time..."
+      required
+    ></textarea>
+    <div class="error-message" id="experienceError">
+      Please share your ambassador experience
+    </div>
+  </div>
 
-            <div class="form-group">
-              <label
-                >Are you available to be a Student Ambassador till December
-                2025? <span class="required">*</span><br /><small
-                  style="color: #5f6368"
-                  >[approx 5-6 hours per week commitment]</small
-                ></label
-              >
-              <div class="radio-group">
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    id="availableYes"
-                    name="availability"
-                    value="Yes"
-                    required
-                  />
-                  <label for="availableYes">Yes</label>
-                </div>
-                <div class="radio-item">
-                  <input
-                    type="radio"
-                    id="availableNo"
-                    name="availability"
-                    value="Time commitment will be hard for me"
-                  />
-                  <label for="availableNo"
-                    >Time commitment will be hard for me</label
-                  >
-                </div>
-              </div>
-              <div class="error-message" id="availabilityError">
-                Please select your availability
-              </div>
-            </div>
+  <div class="form-group">
+    <label
+      >Are you available to be a Student Ambassador till December
+      2025? <span class="required">*</span><br /><small
+        style="color: #5f6368"
+        >[approx 5-6 hours per week commitment]</small
+      ></label
+    >
+    <div class="radio-group">
+      <div class="radio-item">
+        <input
+          type="radio"
+          id="availableYes"
+          name="availability"
+          value="Yes"
+          required
+        />
+        <label for="availableYes">Yes</label>
+      </div>
+      <div class="radio-item">
+        <input
+          type="radio"
+          id="availableNo"
+          name="availability"
+          value="Time commitment will be hard for me"
+        />
+        <label for="availableNo"
+          >Time commitment will be hard for me</label
+        >
+      </div>
+    </div>
+    <div class="error-message" id="availabilityError">
+      Please select your availability
+    </div>
+  </div>
 
-            <div class="form-group">
-              <label for="creativePitch"
-                >Why do you deserve to be a Google Student Ambassador?
-                <span class="required">*</span></label
-              >
-              <p style="color: #5f6368; margin-bottom: 15px">
-                Show us your creativity! This is your chance to pitch yourself
-                in a fun and unique way. It could be a short song, a quick
-                elevator pitch, a comic strip, or anything else that reflects
-                your innovative spirit. Need help? Use Google Gemini to
-                brainstorm ideas or bring your final vision to life!
-              </p>
-              <textarea
-                id="creativePitch"
-                name="creativePitch"
-                placeholder="Your creative pitch here... Be innovative, be you!"
-                required
-              ></textarea>
-              <div class="error-message" id="pitchError">
-                Please write your creative pitch
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="creativePlateform"
-                >Upload your creative pitch (Optional)</label
-              >
-              <p style="color: #5f6368; margin-bottom: 15px">
-                Upload up to 5 supported files. Max 10 MB per file.
-              </p>
-              <div class="file-upload">
-                <input
-                  type="file"
-                  id="creativePlateform"
-                  name="creativePlateform"
-                  multiple
-                  accept=".jpg,.jpeg,.png,.pdf,.mp4,.mp3,.mov,.avi,.doc,.docx"
-                />
-                <label
-                  for="creativePlateform"
-                  class="file-upload-label"
-                  id="creativeFiles"
-                >
-                  📁 Click to upload creative files<br />
-                  <small
-                    >Supported: Images, Videos, Audio, Documents (Max 10MB
-                    each)</small
-                  >
-                </label>
-              </div>
-              <div class="file-info" id="fileInfo"></div>
-            </div>
-          </div>
-
-          <!-- Page 4: Terms & Conditions + Referral ID -->
-          <!-- <div class="form-section" id="section4">
-            <h2 class="section-title">Terms & Conditions</h2>
-            <p class="section-description">
-              Please review the privacy policy and consent before submitting.
-            </p>
-
-            <div class="form-group">
-              <div class="terms-section terms-box" id="termsText">
-                <strong>By submitting this form, you agree to the following terms regarding the collection and handling of your personal information:</strong>
-                <ul>
-                  <li><strong>Information Collected:</strong> Your name, email address, and other details will be collected and stored securely for the purpose of verifying and processing your participation in the program.</li>
-                  <li><strong>Use of Information:</strong> The information provided will only be used by the program organizers (Ping Digital Broadcast Private Limited) to manage eligibility, and maintain program records. It will not be used for any other purposes.</li>
-                  <li><strong>Data Sharing:</strong> The submitted information may be shared with authorized members of the Google Student Ambassador Program team for administrative purposes. It will not be shared with third parties outside the scope of this program.</li>
-                  <li><strong>Data Security:</strong> All data submitted will be stored in a secure environment. Appropriate measures will be taken to protect your data from unauthorized access.</li>
-                </ul>
-                <p>By submitting this form, you consent to the collection and processing of your personal data as outlined above.</p>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="referralId"
-                >Referral ID (Registered Email ID of Ambassador)</label
-              >
-              <input
-                type="email"
-                id="referralId"
-                name="referralId"
-                placeholder="Enter the registered email ID of the ambassador who referred you (must match their program registration)."
-              />
-              <div class="error-message" id="referralIdError">
-                Please enter a valid email for referral (if provided)
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="agree-row">
-                <input type="checkbox" id="agreeTerms" name="agreeTerms" />
-                <label for="agreeTerms" style="font-weight:600">
-                  I agree to the terms and privacy policy above <span class="required">*</span>
-                </label>
-              </div>
-              <div class="error-message" id="agreeTermsError">
-                You must agree to the terms before submitting
-              </div>
-            </div>
-          </div> -->
+  <div class="form-group">
+    <label for="creativePitchTitle">Why do you deserve to be a Google Student Ambassador?</label>
+    <p style="color: #5f6368; margin-bottom: 15px">
+      Show us your creativity! This is your chance to pitch yourself
+      in a fun and unique way. <br>It could be a short song, a quick
+      elevator pitch, a comic strip, or anything else that reflects
+      your innovative spirit. <br>Need help? Use Google Gemini to
+      brainstorm ideas or bring your final vision to life!
+    </p>
+    <p style="color: #5f6368; margin-bottom: 15px">
+      Upload up to 5 supported files. Max 10 MB per file.
+    </p>
+    <div class="file-upload">
+      <input
+        type="file"
+        id="creativePlateform"
+        name="creativePlateform"
+        multiple
+        accept=".jpg,.jpeg,.png,.pdf,.mp4,.mp3,.mov,.avi,.doc,.docx"
+      />
+      <label
+        for="creativePlateform"
+        class="file-upload-label"
+        id="creativeFiles"
+      >
+        📁 Click to upload creative files<br />
+        <small
+          >Supported: Images, Videos, Audio, Documents (Max 10MB
+          each)</small
+        >
+      </label>
+    </div>
+    <div class="file-info" id="fileInfo"></div>
+  </div>
+</div>
 
 
     <!-- Page 4: Terms & Referral -->
@@ -1317,7 +1219,7 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
               id="submitBtn"
               style="display: none"
             >
-              🚀 Submit Application
+             Submit Application
             </button>
           </div>
         </form>
@@ -1330,13 +1232,13 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
 
         <!-- Success State -->
         <div class="success-message" id="successState">
-          <div class="success-icon">🎉</div>
-          <h2>Application Submitted Successfully!</h2>
-          <p>
-            Thank you for applying to be a Google Gemini Student Ambassador.
-            We'll review your application and get back to you soon!
-          </p>
-        </div>
+  <div class="success-icon">🎉</div>
+  <h2>You're In!</h2>
+  <p>
+    Your application has been submitted successfully. We'll be in touch soon!
+  </p>
+</div>
+
       </div>
     </div>
 
@@ -1607,6 +1509,17 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
           isValid = false;
         }
 
+
+// Phone Number validation (add after state validation)
+const phoneNumber = document.getElementById("phoneNumber");
+if (phoneNumber) {  // Check if element exists
+  const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+  if (!phoneNumber.value.trim() || !phoneRegex.test(phoneNumber.value.replace(/\s+/g, ''))) {
+    showError("phoneNumber", "Please enter a valid phone number");
+    isValid = false;
+  }
+}
+
         // College Name
         const collegeName = document.getElementById("collegeName");
         if (!collegeName.value.trim()) {
@@ -1696,13 +1609,6 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
         );
         if (!availability) {
           showError("availability", "Please select your availability");
-          isValid = false;
-        }
-
-        // Creative Pitch
-        const pitch = document.getElementById("creativePitch");
-        if (!pitch.value.trim()) {
-          showError("pitch", "Please write your creative pitch");
           isValid = false;
         }
 
@@ -1802,6 +1708,10 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
               document.getElementById("fullName").value
             );
             apiFormData.append("email", document.getElementById("email").value);
+
+            apiFormData.append("phoneNumber", document.getElementById("phoneNumber").value);
+
+
             apiFormData.append(
               "collegeName",
               document.getElementById("collegeName").value
@@ -1854,12 +1764,7 @@ background: linear-gradient(135deg, #e8f0fe 0%, #667eea15 100%);
               availability ? availability.value : ""
             );
 
-            apiFormData.append(
-              "creativePitch",
-              document.getElementById("creativePitch").value
-            );
-
-            // Referral ID and agreement
+               // Referral ID and agreement
             const referralVal = document.getElementById("referralId").value.trim();
             apiFormData.append("referralId", referralVal);
             apiFormData.append("agreedToTerms", document.getElementById("agreeTerms").checked ? "Yes" : "No");
