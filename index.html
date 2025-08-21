@@ -1833,7 +1833,7 @@
       if (response.status === 409) {
         const errorResult = await response.json();
         showLoading(false);
-        alert(`Duplicate Entry: ${errorResult.error || 'This email has already been used for an application.'}`);
+        alert(` ${errorResult.error || 'This email has already been used for an application.'}`);
         return;
       }
 
