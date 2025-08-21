@@ -4,11 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Google Student Ambassador [Referral Application Form]</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
     <style>
       :root {
         --bg-grad-1: #6a5bff;
         --bg-grad-2: #5ad0ff;
-        --accent: #667eea;
+        --accent: #000;
         --accent-2: #00b7ff;
         --muted: #000000;
         --card-bg: #ffffff;
@@ -24,9 +29,9 @@
       }
 
       body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Google Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         /* background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 100%); */
-        background-color: lightgray; /* ya phir #d3d3d3 */
+        background-color: #f0f0f0; /* ya phir #d3d3d3 */
         min-height: 100vh;
         padding: 24px;
         transition: background 0.6s ease;
@@ -170,7 +175,7 @@
         border-radius: 12px;
         font-size: 1rem;
         transition: all 0.3s ease;
-        font-family: inherit;
+        font-family: Google Sans, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
       .form-group input:focus,
@@ -550,7 +555,7 @@
 
       .terms-title {
         font-size: 1.5rem;
-        color: #667eea;
+        color: #000;
         margin-bottom: 20px;
         font-weight: 600;
       }
@@ -609,8 +614,8 @@
       }
 
       .agreement-checkbox input:checked + .custom-checkbox {
-        background: #667eea;
-        border-color: #667eea;
+        background: #000;
+        border-color: #000;
       }
 
       .agreement-checkbox input:checked + .custom-checkbox::after {
@@ -750,7 +755,7 @@
                   type="text"
                   id="collegeName"
                   name="collegeName"
-                  placeholder="Search and select your college..."
+                  placeholder="If college name is not found in dropdown, Please write your college name."
                   required
                   autocomplete="off"
                 />
