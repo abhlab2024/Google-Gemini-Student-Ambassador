@@ -1553,151 +1553,313 @@
       progressText.textContent = stepTexts[currentSection - 1];
     }
 
+    // document
+    //   .getElementById("ambassadorForm")
+    //   .addEventListener("submit", async function (e) {
+    //     e.preventDefault();
+
+    //     if (!validateCurrentSection()) {
+    //       return;
+    //     }
+
+    //     showLoading(true);
+
+    //     try {
+    //       // Create FormData object for API submission
+    //       const apiFormData = new FormData();
+
+    //       // Add text fields with CORRECT IDs from your HTML
+    //       apiFormData.append("timestamp", new Date().toISOString());
+    //       apiFormData.append(
+    //         "fullName",
+    //         document.getElementById("fullName").value
+    //       );
+    //       apiFormData.append("email", document.getElementById("email").value);
+
+    //       apiFormData.append(
+    //         "phoneNumber",
+    //         document.getElementById("phoneNumber").value
+    //       );
+
+    //       apiFormData.append(
+    //         "collegeName",
+    //         document.getElementById("collegeName").value
+    //       );
+    //       apiFormData.append(
+    //         "universityName",
+    //         document.getElementById("universityName").value
+    //       );
+    //       apiFormData.append("city", document.getElementById("city").value);
+    //       apiFormData.append("state", document.getElementById("state").value);
+
+    //       // Get checked AI tools
+    //       const aiTools = Array.from(
+    //         document.querySelectorAll('input[name="aiTools"]:checked')
+    //       ).map((cb) => cb.value);
+    //       apiFormData.append("aiTools", aiTools.join(", "));
+
+    //       // Get selected radio values
+    //       const geminiFamiliarity = document.querySelector(
+    //         'input[name="geminiFamiliarity"]:checked'
+    //       );
+    //       apiFormData.append(
+    //         "geminiFamiliarity",
+    //         geminiFamiliarity ? geminiFamiliarity.value : ""
+    //       );
+
+    //       const geminiFeatures = Array.from(
+    //         document.querySelectorAll('input[name="geminiFeatures"]:checked')
+    //       ).map((cb) => cb.value);
+    //       apiFormData.append("geminiFeatures", geminiFeatures.join(", "));
+
+    //       const geminiAvailability = document.querySelector(
+    //         'input[name="geminiAvailability"]:checked'
+    //       );
+    //       apiFormData.append(
+    //         "geminiAvailability",
+    //         geminiAvailability ? geminiAvailability.value : ""
+    //       );
+
+    //       apiFormData.append("checkDuplicate", "true");
+
+    //       apiFormData.append(
+    //         "ambassadorExperience",
+    //         document.getElementById("ambassadorExperience").value
+    //       );
+
+    //       const availability = document.querySelector(
+    //         'input[name="availability"]:checked'
+    //       );
+    //       apiFormData.append(
+    //         "availability",
+    //         availability ? availability.value : ""
+    //       );
+
+    //       // Referral ID and agreement
+    //       const referralVal = document
+    //         .getElementById("referralId")
+    //         .value.trim();
+    //       apiFormData.append("referralId", referralVal);
+    //       apiFormData.append(
+    //         "agreedToTerms",
+    //         document.getElementById("agreeTerms").checked ? "Yes" : "No"
+    //       );
+
+    //       // Add files with CORRECT field names
+    //       const studentIdFile = document.getElementById("studentId").files[0];
+    //       if (studentIdFile) {
+    //         apiFormData.append("studentIdFile", studentIdFile);
+    //       }
+
+    //       const creativeFiles =
+    //         document.getElementById("creativePlateform").files;
+    //       if (creativeFiles && creativeFiles.length > 0) {
+    //         Array.from(creativeFiles).forEach((file, index) => {
+    //           apiFormData.append(`creativeFiles[${index}]`, file);
+    //         });
+    //       }
+
+    //       console.log("FormData entries:");
+    //       for (let pair of apiFormData.entries()) {
+    //         if (pair[1] instanceof File) {
+    //           console.log(
+    //             pair[0],
+    //             `File: ${pair[1].name} (${pair[1].size} bytes)`
+    //           );
+    //         } else {
+    //           console.log(pair[0], pair[1]);
+    //         }
+    //       }
+
+    //       // Submit to PHP API
+    //       const response = await fetch(
+    //         `https://quiz.thecore.in/api_common/insert_into_college_pref.php?action=submitApplication`,
+    //         {
+    //           method: "POST",
+    //           body: apiFormData,
+    //         }
+    //       );
+    //       console.log(response);
+
+    //       if (!response.ok) {
+    //         throw new Error(`HTTP error! status: ${response.status}`);
+    //       }
+
+    //       const result = await response.json();
+    //       if (result.success) {
+    //         showSuccess();
+    //         console.log("Application ID:", result.applicationId);
+    //       } else {
+    //         throw new Error(result.error || "Submission failed");
+    //       }
+    //     } catch (error) {
+    //       console.error("Submission error:", error);
+    //       showLoading(false);
+    //       alert(`Failed to submit application: ${error.message}`);
+    //     }
+    //   });
+
+
+
     document
-      .getElementById("ambassadorForm")
-      .addEventListener("submit", async function (e) {
-        e.preventDefault();
+  .getElementById("ambassadorForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-        if (!validateCurrentSection()) {
-          return;
+    if (!validateCurrentSection()) {
+      return;
+    }
+
+    showLoading(true);
+
+    try {
+      // Create FormData object for API submission
+      const apiFormData = new FormData();
+
+      // Add text fields with CORRECT IDs from your HTML
+      apiFormData.append("timestamp", new Date().toISOString());
+      apiFormData.append(
+        "fullName",
+        document.getElementById("fullName").value
+      );
+      apiFormData.append("email", document.getElementById("email").value);
+
+      apiFormData.append(
+        "phoneNumber",
+        document.getElementById("phoneNumber").value
+      );
+
+      apiFormData.append(
+        "collegeName",
+        document.getElementById("collegeName").value
+      );
+      apiFormData.append(
+        "universityName",
+        document.getElementById("universityName").value
+      );
+      apiFormData.append("city", document.getElementById("city").value);
+      apiFormData.append("state", document.getElementById("state").value);
+
+      // Get checked AI tools
+      const aiTools = Array.from(
+        document.querySelectorAll('input[name="aiTools"]:checked')
+      ).map((cb) => cb.value);
+      apiFormData.append("aiTools", aiTools.join(", "));
+
+      // Get selected radio values
+      const geminiFamiliarity = document.querySelector(
+        'input[name="geminiFamiliarity"]:checked'
+      );
+      apiFormData.append(
+        "geminiFamiliarity",
+        geminiFamiliarity ? geminiFamiliarity.value : ""
+      );
+
+      const geminiFeatures = Array.from(
+        document.querySelectorAll('input[name="geminiFeatures"]:checked')
+      ).map((cb) => cb.value);
+      apiFormData.append("geminiFeatures", geminiFeatures.join(", "));
+
+      const geminiAvailability = document.querySelector(
+        'input[name="geminiAvailability"]:checked'
+      );
+      apiFormData.append(
+        "geminiAvailability",
+        geminiAvailability ? geminiAvailability.value : ""
+      );
+
+      apiFormData.append("checkDuplicate", "true");
+
+      apiFormData.append(
+        "ambassadorExperience",
+        document.getElementById("ambassadorExperience").value
+      );
+
+      const availability = document.querySelector(
+        'input[name="availability"]:checked'
+      );
+      apiFormData.append(
+        "availability",
+        availability ? availability.value : ""
+      );
+
+      // Referral ID and agreement
+      const referralVal = document
+        .getElementById("referralId")
+        .value.trim();
+      apiFormData.append("referralId", referralVal);
+      apiFormData.append(
+        "agreedToTerms",
+        document.getElementById("agreeTerms").checked ? "Yes" : "No"
+      );
+
+      // Add files with CORRECT field names
+      const studentIdFile = document.getElementById("studentId").files[0];
+      if (studentIdFile) {
+        apiFormData.append("studentIdFile", studentIdFile);
+      }
+
+      const creativeFiles =
+        document.getElementById("creativePlateform").files;
+      if (creativeFiles && creativeFiles.length > 0) {
+        Array.from(creativeFiles).forEach((file, index) => {
+          apiFormData.append(`creativeFiles[${index}]`, file);
+        });
+      }
+
+      console.log("FormData entries:");
+      for (let pair of apiFormData.entries()) {
+        if (pair[1] instanceof File) {
+          console.log(
+            pair,
+            `File: ${pair.name} (${pair.size} bytes)`
+          );
+        } else {
+          console.log(pair, pair);
         }
+      }
 
-        showLoading(true);
-
-        try {
-          // Create FormData object for API submission
-          const apiFormData = new FormData();
-
-          // Add text fields with CORRECT IDs from your HTML
-          apiFormData.append("timestamp", new Date().toISOString());
-          apiFormData.append(
-            "fullName",
-            document.getElementById("fullName").value
-          );
-          apiFormData.append("email", document.getElementById("email").value);
-
-          apiFormData.append(
-            "phoneNumber",
-            document.getElementById("phoneNumber").value
-          );
-
-          apiFormData.append(
-            "collegeName",
-            document.getElementById("collegeName").value
-          );
-          apiFormData.append(
-            "universityName",
-            document.getElementById("universityName").value
-          );
-          apiFormData.append("city", document.getElementById("city").value);
-          apiFormData.append("state", document.getElementById("state").value);
-
-          // Get checked AI tools
-          const aiTools = Array.from(
-            document.querySelectorAll('input[name="aiTools"]:checked')
-          ).map((cb) => cb.value);
-          apiFormData.append("aiTools", aiTools.join(", "));
-
-          // Get selected radio values
-          const geminiFamiliarity = document.querySelector(
-            'input[name="geminiFamiliarity"]:checked'
-          );
-          apiFormData.append(
-            "geminiFamiliarity",
-            geminiFamiliarity ? geminiFamiliarity.value : ""
-          );
-
-          const geminiFeatures = Array.from(
-            document.querySelectorAll('input[name="geminiFeatures"]:checked')
-          ).map((cb) => cb.value);
-          apiFormData.append("geminiFeatures", geminiFeatures.join(", "));
-
-          const geminiAvailability = document.querySelector(
-            'input[name="geminiAvailability"]:checked'
-          );
-          apiFormData.append(
-            "geminiAvailability",
-            geminiAvailability ? geminiAvailability.value : ""
-          );
-
-          apiFormData.append("checkDuplicate", "true");
-
-          apiFormData.append(
-            "ambassadorExperience",
-            document.getElementById("ambassadorExperience").value
-          );
-
-          const availability = document.querySelector(
-            'input[name="availability"]:checked'
-          );
-          apiFormData.append(
-            "availability",
-            availability ? availability.value : ""
-          );
-
-          // Referral ID and agreement
-          const referralVal = document
-            .getElementById("referralId")
-            .value.trim();
-          apiFormData.append("referralId", referralVal);
-          apiFormData.append(
-            "agreedToTerms",
-            document.getElementById("agreeTerms").checked ? "Yes" : "No"
-          );
-
-          // Add files with CORRECT field names
-          const studentIdFile = document.getElementById("studentId").files[0];
-          if (studentIdFile) {
-            apiFormData.append("studentIdFile", studentIdFile);
-          }
-
-          const creativeFiles =
-            document.getElementById("creativePlateform").files;
-          if (creativeFiles && creativeFiles.length > 0) {
-            Array.from(creativeFiles).forEach((file, index) => {
-              apiFormData.append(`creativeFiles[${index}]`, file);
-            });
-          }
-
-          console.log("FormData entries:");
-          for (let pair of apiFormData.entries()) {
-            if (pair[1] instanceof File) {
-              console.log(
-                pair[0],
-                `File: ${pair[1].name} (${pair[1].size} bytes)`
-              );
-            } else {
-              console.log(pair[0], pair[1]);
-            }
-          }
-
-          // Submit to PHP API
-          const response = await fetch(
-            `https://quiz.thecore.in/api_common/insert_into_college_pref.php?action=submitApplication`,
-            {
-              method: "POST",
-              body: apiFormData,
-            }
-          );
-          console.log(response);
-
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-
-          const result = await response.json();
-          if (result.success) {
-            showSuccess();
-            console.log("Application ID:", result.applicationId);
-          } else {
-            throw new Error(result.error || "Submission failed");
-          }
-        } catch (error) {
-          console.error("Submission error:", error);
-          showLoading(false);
-          alert(`Failed to submit application: ${error.message}`);
+      // Submit to PHP API
+      const response = await fetch(
+        `https://quiz.thecore.in/api_common/insert_into_college_pref.php?action=submitApplication`,
+        {
+          method: "POST",
+          body: apiFormData,
         }
-      });
+      );
+      console.log(response);
+
+      // Handle duplicate email error (409 status)
+      if (response.status === 409) {
+        const errorResult = await response.json();
+        showLoading(false);
+        alert(`Duplicate Entry: ${errorResult.error || 'This email has already been used for an application.'}`);
+        return;
+      }
+
+      // Handle other HTTP errors
+      if (!response.ok) {
+        const errorResult = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorResult.error || `HTTP error! status: ${response.status}`);
+      }
+
+      // Handle successful response
+      const result = await response.json();
+      if (result.success) {
+        showSuccess();
+        console.log("Application ID:", result.applicationId);
+      } else {
+        throw new Error(result.error || "Submission failed");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      showLoading(false);
+      alert(`Failed to submit application: ${error.message}`);
+    }
+  });
+
+
+
 
     // Convert file to base64 (kept for compatibility if needed)
     function convertFileToBase64(file) {
